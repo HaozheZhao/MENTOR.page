@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="R-KV – Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration">
+  <meta name="keywords" content="R-KV, KV cache, compression, reasoning LLMs, memory efficient, chain-of-thought">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>R-KV: Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration</title>
+
+  <!-- Fonts & Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <!-- Analytics & JS -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-PYVRSFMDRL');</script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<section class="hero is-light is-fullheight-with-navbar">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">R-KV: Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration</h1>
+
+          <!-- ========== AUTHORS ========= -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://zefan-cai.github.io/">Zefan&nbsp;Cai</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://wendy-xiao.github.io/">Wen&nbsp;Xiao</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="#">Hanshi&nbsp;Sun</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="#">Cheng&nbsp;Luo</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="#">Yikai&nbsp;Zhang</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="#">Ke&nbsp;Wan</a><sup>5</sup>,</span>
+            <span class="author-block"><a href="#">Yucheng&nbsp;Li</a><sup>6</sup>,</span>
+            <span class="author-block"><a href="#">Yeyang&nbsp;Zhou</a><sup>5</sup>,</span>
+            <span class="author-block"><a href="#">Li-Wen&nbsp;Chang</a>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=Ls0e7IEAAAAJ">Jiuxiang&nbsp;Gu</a><sup>7</sup>,</span>
+            <span class="author-block"><a href="#">Zhen&nbsp;Dong</a><sup>8</sup>,</span>
+            <span class="author-block"><a href="https://www.ics.uci.edu/~anandkumar/">Anima&nbsp;Anandkumar</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="#">Abedelkadir&nbsp;Asi</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://junjiehu.github.io/">Junjie&nbsp;Hu</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors mt-1">
+            <span class="author-block"><sup>1</sup>University&nbsp;of&nbsp;Wisconsin–Madison</span>
+            <span class="author-block"><sup>2</sup>Microsoft</span>
+            <span class="author-block"><sup>3</sup>Carnegie&nbsp;Mellon&nbsp;University</span>
+            <span class="author-block"><sup>4</sup>California&nbsp;Institute&nbsp;of&nbsp;Technology</span>
+            <span class="author-block"><sup>5</sup>University&nbsp;of&nbsp;California–San&nbsp;Diego</span>
+            <span class="author-block"><sup>6</sup>University&nbsp;of&nbsp;Surrey</span>
+            <span class="author-block"><sup>7</sup>Adobe</span>
+            <span class="author-block"><sup>8</sup>University&nbsp;of&nbsp;California–Berkeley</span>
+          </div>
+
+          
+
+
+          <!-- Action Buttons -->
+          <div class="buttons is-centered mt-5">
+            <a href="#news" class="button is-link is-light">News</a>
+            <a href="#overview" class="button is-link is-light">Overview</a>
+            <a href="#highlights" class="button is-link is-light">Highlights</a>
+            <a href="#why" class="button is-link is-light">Why&nbsp;R-KV</a>
+            <a href="#method" class="button is-link is-light">Method</a>
+            <a href="#results" class="button is-link is-light">Results</a>
+            <a href="#efficiency" class="button is-link is-light">Efficiency</a>
+            <a href="#comparison" class="button is-link is-light">Comparison</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= NEWS ============================= -->
+<section class="section" id="news">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🔥 News</h2>
+        <div class="content has-text-left">
+          <ul>
+            <li><strong>🚀&nbsp;2025-05-29</strong> — We are pleased to announce the initial release of <strong>R-KV</strong>, a highly-efficient decoding-time KV-cache compression method to serve reasoning LLMs.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= OVERVIEW ============================= -->
+<section class="section" id="overview">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>Large language models that rely on chain-of-thought (CoT) or self-reflection can crack tough reasoning tasks — but at the cost of <strong>very long outputs that bloat the key–value (KV) cache</strong> during inference. Traditional cache-compression schemes, tuned for long <em>prompts</em>, tumble on these generated traces, keeping only ≈60&nbsp;% of the original accuracy when restricted to 10&nbsp;% of the cache.</p>
+          <p><strong>R-KV</strong> — <strong>R</strong>edundancy-aware KV-cache compression for <strong>R</strong>easoning models — solves this by ranking tokens on-the-fly for both <em>importance</em> <strong>and</strong> <em>non-redundancy</em>, retaining only the informative, diverse ones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= HIGHLIGHTS ============================= -->
+<section class="section" id="highlights">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🌟 Highlights</h2>
+        <div class="content has-text-justified">
+          <table class="table is-striped is-fullwidth is-narrow">
+            <thead><tr><th>Metric</th><th>Full KV</th><th><strong>R-KV (ours)</strong></th></tr></thead>
+            <tbody>
+              <tr><td>KV cache kept</td><td>100&nbsp;%</td><td><strong>10&nbsp;%</strong></td></tr>
+              <tr><td>Accuracy</td><td>100&nbsp;%</td><td><strong>≈100&nbsp;%</strong></td></tr>
+              <tr><td>Throughput ↑</td><td>1×</td><td><strong>6.6×</strong></td></tr>
+              <tr><td>Memory saved ↓</td><td>–</td><td><strong>90&nbsp;%</strong></td></tr>
+            </tbody>
+          </table>
+          <p class="is-size-6"><em>At 16 % cache, noise removal even nudges accuracy to 105 % of the full baseline.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= WHY R-KV ============================= -->
+<section class="section" id="why">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">✨ Why&nbsp;R-KV?</h2>
+        <div class="content has-text-justified">
+          <p><strong>Up to 90 % KV-cache memory savings</strong> with zero—sometimes negative—accuracy loss.</p>
+          <p><strong>Plug-and-play:</strong> a lightweight wrapper for any autoregressive LLM.</p>
+          <p><strong>Training-free:</strong> drop straight into inference or RL roll-outs—no finetuning required.</p>
+          <p>Chain-of-thought (CoT) and self-reflection unlock impressive reasoning, but they <strong>explode the KV cache</strong>. A single DeepSeek-R1-Distill-8B run on a tough math problem can:</p>
+          <ul>
+            <li>Generate <strong>32 000 tokens</strong></li>
+            <li>Load <strong>15.5 GB</strong> of weights</li>
+            <li>Allocate <strong>4.1 GB</strong> of KV just to remember its own musings</li>
+          </ul>
+          <p>Existing compression tools focus on <em>long prompts</em> and falter on <em>long generations</em>—often pruning the wrong tokens because redundant self-checks still attend heavily to themselves.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= METHOD ============================= -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🔍 Method — Redundancy-aware KV Cache Compression (R-KV)</h2>
+        <div class="content has-text-justified">
+          <p><strong>R-KV</strong> tackles redundant key/value (KV) tokens by <em>compressing the KV cache on-the-fly while the model is decoding</em>, keeping only tokens that are <strong>important</strong> and <strong>non-redundant</strong>.</p>
+          <img src="./static/images/method.png" alt="R-KV method diagram">
+          <br>
+          <table class="table is-bordered is-fullwidth is-hoverable">
+            <thead><tr><th>Part</th><th>What happens</th><th>Key idea</th></tr></thead>
+            <tbody>
+              <tr><td>1.&nbsp;Decoding-time KV staging</td><td>Newly generated tokens are written to a buffer <code>B_buffer</code>.</td><td>Separate buffer lets us decide what to keep <em>after</em> seeing a chunk of text.</td></tr>
+              <tr><td>2.&nbsp;Importance scoring</td><td>Use attention weights from the last <code>α</code> observation tokens to score each candidate token.</td><td>High attention ⇒ token is critical for future predictions.</td></tr>
+              <tr><td>3.&nbsp;Redundancy estimation</td><td>Compute cosine similarity between key vectors; older near-duplicates are marked redundant.</td><td>Keeps semantics while pruning repetition.</td></tr>
+              <tr><td>4.&nbsp;Joint selection</td><td>Final score <code>Z = λ·Importance − (1-λ)·Redundancy</code>. Top-<em>k</em> tokens + observation tokens are retained in the budgeted cache.</td><td>One knob (<code>λ</code>) trades memory vs. quality.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= PERFORMANCE RESULTS ============================= -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">📈 Performance Results</h2>
+        <div class="content has-text-justified">
+          <p>Our method surpassed baselines by a large margin in challenging math benchmarks, and surprisingly even outperformed full KV.</p>
+          <img src="./static/images/main_results.png" alt="Accuracy curves">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= EFFICIENCY RESULTS ============================= -->
+<section class="section" id="efficiency">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">⚡️ Efficiency Results</h2>
+        <div class="content has-text-justified">
+          <h3 class="title is-5 mt-4">Memory Saving</h3>
+          <p>R-KV keeps two small, fixed-size buffers, so memory usage remains <strong>constant</strong>, unlike FullKV whose memory grows linearly:</p>
+          <table class="table is-bordered is-fullwidth">
+            <thead><tr><th>Buffer</th><th>Purpose</th><th>Shape</th></tr></thead>
+            <tbody>
+              <tr><td><strong>KV budget</strong></td><td>Retained tokens</td><td><code>b × B_budget × L × H × d</code></td></tr>
+              <tr><td><strong>KV buffer</strong></td><td>Fresh tokens</td><td><code>b × B_buffer × L × H × d</code></td></tr>
+            </tbody></table>
+          <h3 class="title is-5 mt-4">Computation Overhead</h3>
+          <table class="table is-bordered is-fullwidth is-narrow">
+            <thead><tr><th>Part</th><th>Complexity</th></tr></thead>
+            <tbody>
+              <tr><td>Importance scoring</td><td><code>O(α × B_budget)</code></td></tr>
+              <tr><td>Redundancy scoring</td><td><code>O(B_budget²)</code></td></tr>
+              <tr><td>Attention (compressed)</td><td><code>O((B_budget + B_buffer) × B_buffer)</code></td></tr>
+              <tr><td>Attention (FullKV)</td><td><code>O(B_full × B_buffer)</code></td></tr>
+            </tbody></table>
+          <p>For long sequences (<code>B_full ≫ B_budget</code>), the tiny cache more than offsets scoring overhead.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================= COMPARISON ============================= -->
+<section class="section" id="comparison">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🔍 R-KV vs. SnapKV: Token-Selection Comparison</h2>
+        <div class="content has-text-justified">
+          <p>The figure below shows which tokens are picked by <strong>R-KV</strong> and the pure-attention baseline <strong>SnapKV</strong> at the same decoding step.</p>
+          <p><em>Grey = not selected &nbsp;|&nbsp; Light orange → Dark red = selected tokens (deeper red = chosen by more attention heads)</em></p>
+          <img src="./static/images/comparison.png" alt="Token selection comparison">
+          <h3 class="title is-5 mt-4">Key Findings</h3>
+          <ul>
+            <li><strong>Broader Coverage</strong> — hybrid score (attention × redundancy suppression) selects tokens spread across the whole output.</li>
+            <li><strong>Higher Information Diversity</strong> — captures valuable pieces of information at diverse positions.</li>
+            <li><strong>Significantly Less Redundancy</strong> — redundancy check filters low-value segments.</li>
+          </ul>
+          <p class="is-size-6">By combining <strong>attention strength with redundancy filtering</strong>, <strong>R-KV</strong> retains the important context and removes noise, successfully completing the task.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CITATION ============================= -->
+<section class="section" id="citation">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">📚 Citation</h2>
+        <div class="content has-text-justified">
+          <p>If you find <strong>R-KV</strong> useful in your research, please cite us:</p>
+
+<pre><code>@misc{cai2025rkvredundancyawarekvcache,
+  title        = {R-KV: Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration},
+  author       = {Zefan Cai and Wen Xiao and Hanshi Sun and Cheng Luo and Yikai Zhang and Ke Wan
+                  and Yucheng Li and Yeyang Zhou and Li-Wen Chang and Jiuxiang Gu
+                  and Zhen Dong and Anima Anandkumar and Abedelkadir Asi and Junjie Hu},
+  year         = {2025},
+  eprint       = {2505.24133},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.CL},
+  url          = {https://arxiv.org/abs/2505.24133}
+}</code></pre>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="footer has-background-dark">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="WIP"><i class="fas fa-file-pdf" style="color:white"></i></a>
+      <a class="icon-link" href="https://github.com/rkv-project/R-KV"><i class="fab fa-github" style="color:white"></i></a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-grey-light">
+          <p>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+          <p>Forked from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://github.com/ds1000-code-gen/ds1000-code-gen.github.io">DS-1000</a>. We thank the authors for their work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
