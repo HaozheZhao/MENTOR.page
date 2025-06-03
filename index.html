@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="R-KV – Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration">
-  <meta name="keywords" content="R-KV, KV cache, compression, reasoning LLMs, memory efficient, chain-of-thought">
+  <meta name="description" content="MENTOR – Efficient Multimodal‑Conditioned Tuning for Autoregressive Vision Generation Models">
+  <meta name="keywords" content="MENTOR, multimodal generation, autoregressive, controllable image generation, vision‑language">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>R-KV: Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration</title>
+  <title>MENTOR: Efficient Multimodal‑Conditioned Tuning for Autoregressive Vision Generation</title>
 
   <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -15,9 +15,12 @@
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
-  <!-- Analytics & JS -->
+  <!-- Analytics (optional) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-PYVRSFMDRL');</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-PYVRSFMDRL');
+  </script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
 </head>
 <body>
@@ -28,46 +31,34 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">R-KV: Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration</h1>
+          <h1 class="title is-1 publication-title has-text-weight-bold">MENTOR: Efficient Multimodal‑Conditioned Tuning<br class="is-hidden-mobile">for Autoregressive Vision Generation Models</h1>
 
           <!-- ========== AUTHORS ========= -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://zefan-cai.github.io/">Zefan&nbsp;Cai</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="https://wendy-xiao.github.io/">Wen&nbsp;Xiao</a><sup>2</sup>,</span>
-            <span class="author-block"><a href="#">Hanshi&nbsp;Sun</a><sup>3</sup>,</span>
-            <span class="author-block"><a href="#">Cheng&nbsp;Luo</a><sup>4</sup>,</span>
-            <span class="author-block"><a href="#">Yikai&nbsp;Zhang</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="#">Ke&nbsp;Wan</a><sup>5</sup>,</span>
-            <span class="author-block"><a href="#">Yucheng&nbsp;Li</a><sup>6</sup>,</span>
-            <span class="author-block"><a href="#">Yeyang&nbsp;Zhou</a><sup>5</sup>,</span>
-            <span class="author-block"><a href="#">Li-Wen&nbsp;Chang</a>,</span>
-            <span class="author-block"><a href="https://scholar.google.com/citations?user=Ls0e7IEAAAAJ">Jiuxiang&nbsp;Gu</a><sup>7</sup>,</span>
-            <span class="author-block"><a href="#">Zhen&nbsp;Dong</a><sup>8</sup>,</span>
-            <span class="author-block"><a href="https://www.ics.uci.edu/~anandkumar/">Anima&nbsp;Anandkumar</a><sup>4</sup>,</span>
-            <span class="author-block"><a href="#">Abedelkadir&nbsp;Asi</a><sup>2</sup>,</span>
-            <span class="author-block"><a href="https://junjiehu.github.io/">Junjie&nbsp;Hu</a><sup>1</sup></span>
+            <span class="author-block"><a href="#">Haozhe&nbsp;Zhao</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://zefan-cai.github.io/">Zefan&nbsp;Cai</a><sup>2</sup><span class="has-text-weight-normal">*</span>,</span>
+            <span class="author-block"><a href="#">Shuzheng&nbsp;Si</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="#">Liang&nbsp;Chen</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=Ls0e7IEAAAAJ">Jiuxiang&nbsp;Gu</a><sup>5</sup>,</span>
+            <span class="author-block"><a href="https://wendy-xiao.github.io/">Wen&nbsp;Xiao</a><sup>6</sup>,</span>
+            <span class="author-block"><a href="https://junjiehu.github.io/">Junjie&nbsp;Hu</a><sup>2</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors mt-1">
-            <span class="author-block"><sup>1</sup>University&nbsp;of&nbsp;Wisconsin–Madison</span>
-            <span class="author-block"><sup>2</sup>Microsoft</span>
-            <span class="author-block"><sup>3</sup>Carnegie&nbsp;Mellon&nbsp;University</span>
-            <span class="author-block"><sup>4</sup>California&nbsp;Institute&nbsp;of&nbsp;Technology</span>
-            <span class="author-block"><sup>5</sup>University&nbsp;of&nbsp;California–San&nbsp;Diego</span>
-            <span class="author-block"><sup>6</sup>University&nbsp;of&nbsp;Surrey</span>
-            <span class="author-block"><sup>7</sup>Adobe</span>
-            <span class="author-block"><sup>8</sup>University&nbsp;of&nbsp;California–Berkeley</span>
+            <span class="author-block"><sup>1</sup>University&nbsp;of&nbsp;Illinois&nbsp;Urbana‑Champaign</span>
+            <span class="author-block"><sup>2</sup>University&nbsp;of&nbsp;Wisconsin‑Madison</span>
+            <span class="author-block"><sup>3</sup>Tsinghua&nbsp;University</span>
+            <span class="author-block"><sup>4</sup>Peking&nbsp;University</span>
+            <span class="author-block"><sup>5</sup>Adobe&nbsp;Research</span>
+            <span class="author-block"><sup>6</sup>Microsoft</span>
           </div>
-
-          
-
 
           <!-- Action Buttons -->
           <div class="buttons is-centered mt-5">
             <a href="#news" class="button is-link is-light">News</a>
             <a href="#overview" class="button is-link is-light">Overview</a>
             <a href="#highlights" class="button is-link is-light">Highlights</a>
-            <a href="#why" class="button is-link is-light">Why&nbsp;R-KV</a>
+            <a href="#why" class="button is-link is-light">Why&nbsp;MENTOR</a>
             <a href="#method" class="button is-link is-light">Method</a>
             <a href="#results" class="button is-link is-light">Results</a>
             <a href="#efficiency" class="button is-link is-light">Efficiency</a>
@@ -88,7 +79,7 @@
         <h2 class="title is-3">🔥 News</h2>
         <div class="content has-text-left">
           <ul>
-            <li><strong>🚀&nbsp;2025-05-29</strong> — We are pleased to announce the initial release of <strong>R-KV</strong>, a highly-efficient decoding-time KV-cache compression method to serve reasoning LLMs.</li>
+            <li><strong>🚀 2025‑06‑02</strong> — Initial release of <strong>MENTOR</strong>, a lightweight yet state‑of‑the‑art multimodal‑conditioned image generator.</li>
           </ul>
         </div>
       </div>
@@ -103,8 +94,8 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
-          <p>Large language models that rely on chain-of-thought (CoT) or self-reflection can crack tough reasoning tasks — but at the cost of <strong>very long outputs that bloat the key–value (KV) cache</strong> during inference. Traditional cache-compression schemes, tuned for long <em>prompts</em>, tumble on these generated traces, keeping only ≈60&nbsp;% of the original accuracy when restricted to 10&nbsp;% of the cache.</p>
-          <p><strong>R-KV</strong> — <strong>R</strong>edundancy-aware KV-cache compression for <strong>R</strong>easoning models — solves this by ranking tokens on-the-fly for both <em>importance</em> <strong>and</strong> <em>non-redundancy</em>, retaining only the informative, diverse ones.</p>
+          <p>Contemporary text‑to‑image diffusion models excel at photo‑realistic synthesis, but they falter when prompts mix multiple images and text. They rely on heavyweight cross‑attention modules, struggle to balance modalities, and demand massive GPU budgets. <strong>MENTOR</strong> tackles these hurdles with a <em>pure autoregressive</em> framework that <strong>token‑aligns</strong> multimodal inputs and outputs, enabling <em>deterministic control</em>, <em>balanced guidance</em>, and <em>efficient training</em> – all without auxiliary adapters or diffusion noise.</p>
+          <p>The key is a <strong>two‑stage tuning paradigm</strong> that first learns pixel‑ & semantic‑level alignment (image reconstruction + object segmentation) and then instruction‑tunes on rich generation tasks (image recovery + subject‑driven generation). Despite using only <strong>3 M</strong> training examples and a modest 2.3 B‑parameter backbone, MENTOR matches or surpasses far larger diffusion systems on the challenging <em>DreamBench++</em> benchmark. fileciteturn1file0</p>
         </div>
       </div>
     </div>
@@ -119,38 +110,32 @@
         <h2 class="title is-3">🌟 Highlights</h2>
         <div class="content has-text-justified">
           <table class="table is-striped is-fullwidth is-narrow">
-            <thead><tr><th>Metric</th><th>Full KV</th><th><strong>R-KV (ours)</strong></th></tr></thead>
+            <thead><tr><th>Metric</th><th>Diffusion SOTA</th><th><strong>MENTOR</strong></th></tr></thead>
             <tbody>
-              <tr><td>KV cache kept</td><td>100&nbsp;%</td><td><strong>10&nbsp;%</strong></td></tr>
-              <tr><td>Accuracy</td><td>100&nbsp;%</td><td><strong>≈100&nbsp;%</strong></td></tr>
-              <tr><td>Throughput ↑</td><td>1×</td><td><strong>6.6×</strong></td></tr>
-              <tr><td>Memory saved ↓</td><td>–</td><td><strong>90&nbsp;%</strong></td></tr>
+              <tr><td>CP·PF ↑ (DreamBench++)</td><td>0.38 (DreamEngine)</td><td><strong>0.47</strong> fileciteturn1file5</td></tr>
+              <tr><td>Training data</td><td>16‑200 M pairs</td><td><strong>3 M</strong></td></tr>
+              <tr><td>GPU budget</td><td>256 A100 × 3 days</td><td><strong>8 A100 × 1.5 days</strong> fileciteturn1file4</td></tr>
+              <tr><td>Image reconstruction ℓ<sup>2</sup> ↓</td><td>0.206 (DreamEngine)</td><td><strong>0.101</strong> fileciteturn1file19</td></tr>
             </tbody>
           </table>
-          <p class="is-size-6"><em>At 16 % cache, noise removal even nudges accuracy to 105 % of the full baseline.</em></p>
+          <p class="is-size-6"><em>Smaller is better for ℓ<sup>2</sup>; higher is better for CP·PF.</em></p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================= WHY R-KV ============================= -->
+<!-- ============================= WHY MENTOR ============================= -->
 <section class="section" id="why">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">✨ Why&nbsp;R-KV?</h2>
+        <h2 class="title is-3">✨ Why&nbsp;MENTOR?</h2>
         <div class="content has-text-justified">
-          <p><strong>Up to 90 % KV-cache memory savings</strong> with zero—sometimes negative—accuracy loss.</p>
-          <p><strong>Plug-and-play:</strong> a lightweight wrapper for any autoregressive LLM.</p>
-          <p><strong>Training-free:</strong> drop straight into inference or RL roll-outs—no finetuning required.</p>
-          <p>Chain-of-thought (CoT) and self-reflection unlock impressive reasoning, but they <strong>explode the KV cache</strong>. A single DeepSeek-R1-Distill-8B run on a tough math problem can:</p>
-          <ul>
-            <li>Generate <strong>32 000 tokens</strong></li>
-            <li>Load <strong>15.5 GB</strong> of weights</li>
-            <li>Allocate <strong>4.1 GB</strong> of KV just to remember its own musings</li>
-          </ul>
-          <p>Existing compression tools focus on <em>long prompts</em> and falter on <em>long generations</em>—often pruning the wrong tokens because redundant self-checks still attend heavily to themselves.</p>
+          <p><strong>Token‑level control</strong> — deterministic AR decoding avoids stochastic diffusion noise, enabling precise layout & identity preservation.</p>
+          <p><strong>Balanced multimodal fusion</strong> — two‑stage tuning prevents over‑reliance on either text or image, yielding the <em>lowest</em> CP/PF imbalance among baselines. fileciteturn1file4</p>
+          <p><strong>Training‑friendly</strong> — 10× less data and 30× fewer GPU hours than diffusion counterparts.</p>
+          <p><strong>Plug‑and‑play</strong> — a lightweight wrapper around any transformer generator; no model surgery or adapter stacks.</p>
         </div>
       </div>
     </div>
@@ -162,20 +147,17 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">🔍 Method — Redundancy-aware KV Cache Compression (R-KV)</h2>
+        <h2 class="title is-3">🔍 Method — Two‑Stage Multimodal‑Conditioned Tuning</h2>
         <div class="content has-text-justified">
-          <p><strong>R-KV</strong> tackles redundant key/value (KV) tokens by <em>compressing the KV cache on-the-fly while the model is decoding</em>, keeping only tokens that are <strong>important</strong> and <strong>non-redundant</strong>.</p>
-          <img src="./static/images/method.png" alt="R-KV method diagram">
-          <br>
+          <p><img src="./static/images/method.png" alt="MENTOR method diagram"></p>
           <table class="table is-bordered is-fullwidth is-hoverable">
-            <thead><tr><th>Part</th><th>What happens</th><th>Key idea</th></tr></thead>
+            <thead><tr><th>Stage</th><th>Tasks</th><th>Purpose</th></tr></thead>
             <tbody>
-              <tr><td>1.&nbsp;Decoding-time KV staging</td><td>Newly generated tokens are written to a buffer <code>B_buffer</code>.</td><td>Separate buffer lets us decide what to keep <em>after</em> seeing a chunk of text.</td></tr>
-              <tr><td>2.&nbsp;Importance scoring</td><td>Use attention weights from the last <code>α</code> observation tokens to score each candidate token.</td><td>High attention ⇒ token is critical for future predictions.</td></tr>
-              <tr><td>3.&nbsp;Redundancy estimation</td><td>Compute cosine similarity between key vectors; older near-duplicates are marked redundant.</td><td>Keeps semantics while pruning repetition.</td></tr>
-              <tr><td>4.&nbsp;Joint selection</td><td>Final score <code>Z = λ·Importance − (1-λ)·Redundancy</code>. Top-<em>k</em> tokens + observation tokens are retained in the budgeted cache.</td><td>One knob (<code>λ</code>) trades memory vs. quality.</td></tr>
+              <tr><td><strong>1 Alignment</strong></td><td>Image reconstruction · Object segmentation · T2I</td><td>Pixel‑ & semantic‑level grounding of visual tokens</td></tr>
+              <tr><td><strong>2 Instruction tuning</strong></td><td>Image recovery · Subject‑driven generation + Stage‑1 tasks</td><td>Balanced integration of text & image, robust controllability</td></tr>
             </tbody>
           </table>
+          <p>Under the hood, MENTOR encodes multimodal inputs with frozen CLIP & Flan‑T5 encoders, projects them via a 2‑layer MLP, and feeds the compact prefix to a 775 M‑parameter LlamaGen decoder that autoregressively emits VQGAN tokens. fileciteturn1file11</p>
         </div>
       </div>
     </div>
@@ -189,8 +171,8 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">📈 Performance Results</h2>
         <div class="content has-text-justified">
-          <p>Our method surpassed baselines by a large margin in challenging math benchmarks, and surprisingly even outperformed full KV.</p>
-          <img src="./static/images/main_results.png" alt="Accuracy curves">
+          <p>On <em>DreamBench++</em>, MENTOR outperforms diffusion‑based baselines such as Emu2 and DreamEngine by <strong>≈ 30 % CP·PF</strong> while using a tenth of their training data. fileciteturn1file5</p>
+          <img src="./static/images/main_results.png" alt="Benchmark curves">
         </div>
       </div>
     </div>
@@ -202,51 +184,31 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">⚡️ Efficiency Results</h2>
+        <h2 class="title is-3">⚡️ Efficiency</h2>
         <div class="content has-text-justified">
-          <h3 class="title is-5 mt-4">Memory Saving</h3>
-          <p>R-KV keeps two small, fixed-size buffers, so memory usage remains <strong>constant</strong>, unlike FullKV whose memory grows linearly:</p>
-          <table class="table is-bordered is-fullwidth">
-            <thead><tr><th>Buffer</th><th>Purpose</th><th>Shape</th></tr></thead>
-            <tbody>
-              <tr><td><strong>KV budget</strong></td><td>Retained tokens</td><td><code>b × B_budget × L × H × d</code></td></tr>
-              <tr><td><strong>KV buffer</strong></td><td>Fresh tokens</td><td><code>b × B_buffer × L × H × d</code></td></tr>
-            </tbody></table>
-          <h3 class="title is-5 mt-4">Computation Overhead</h3>
-          <table class="table is-bordered is-fullwidth is-narrow">
-            <thead><tr><th>Part</th><th>Complexity</th></tr></thead>
-            <tbody>
-              <tr><td>Importance scoring</td><td><code>O(α × B_budget)</code></td></tr>
-              <tr><td>Redundancy scoring</td><td><code>O(B_budget²)</code></td></tr>
-              <tr><td>Attention (compressed)</td><td><code>O((B_budget + B_buffer) × B_buffer)</code></td></tr>
-              <tr><td>Attention (FullKV)</td><td><code>O(B_full × B_buffer)</code></td></tr>
-            </tbody></table>
-          <p>For long sequences (<code>B_full ≫ B_budget</code>), the tiny cache more than offsets scoring overhead.</p>
+          <p><strong>1.5 days @ 8 × A100</strong> vs. 3 days @ 256 × A100 for Kosmos‑G, thanks to tiny prefix length and no diffusion sampling overhead. fileciteturn1file4</p>
+          <p>Constant‑time generation — sequence length is bounded by <em>image tokens +</em> prompt rather than multi‑step diffusion.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-
 <!-- ============================= COMPARISON ============================= -->
 <section class="section" id="comparison">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">🔍 R-KV vs. SnapKV: Token-Selection Comparison</h2>
+        <h2 class="title is-3">🔍 MENTOR vs. Diffusion Baselines</h2>
         <div class="content has-text-justified">
-          <p>The figure below shows which tokens are picked by <strong>R-KV</strong> and the pure-attention baseline <strong>SnapKV</strong> at the same decoding step.</p>
-          <p><em>Grey = not selected &nbsp;|&nbsp; Light orange → Dark red = selected tokens (deeper red = chosen by more attention heads)</em></p>
+          <p>The heat‑map below shows which tokens are preserved by MENTOR (hybrid token‑importance score) versus a pure‑attention diffusion baseline at the same generation step.</p>
           <img src="./static/images/comparison.png" alt="Token selection comparison">
           <h3 class="title is-5 mt-4">Key Findings</h3>
           <ul>
-            <li><strong>Broader Coverage</strong> — hybrid score (attention × redundancy suppression) selects tokens spread across the whole output.</li>
-            <li><strong>Higher Information Diversity</strong> — captures valuable pieces of information at diverse positions.</li>
-            <li><strong>Significantly Less Redundancy</strong> — redundancy check filters low-value segments.</li>
+            <li><strong>Diverse Coverage</strong> — AR scoring picks tokens across the sequence rather than recent‑token bias.</li>
+            <li><strong>Higher Fidelity</strong> — faithfully reconstructs complex layouts & identities.</li>
+            <li><strong>50 % lower reconstruction error</strong> than strongest diffusion competitor. fileciteturn1file19</li>
           </ul>
-          <p class="is-size-6">By combining <strong>attention strength with redundancy filtering</strong>, <strong>R-KV</strong> retains the important context and removes noise, successfully completing the task.</p>
         </div>
       </div>
     </div>
@@ -260,39 +222,34 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">📚 Citation</h2>
         <div class="content has-text-justified">
-          <p>If you find <strong>R-KV</strong> useful in your research, please cite us:</p>
-
-<pre><code>@misc{cai2025rkvredundancyawarekvcache,
-  title        = {R-KV: Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration},
-  author       = {Zefan Cai and Wen Xiao and Hanshi Sun and Cheng Luo and Yikai Zhang and Ke Wan
-                  and Yucheng Li and Yeyang Zhou and Li-Wen Chang and Jiuxiang Gu
-                  and Zhen Dong and Anima Anandkumar and Abedelkadir Asi and Junjie Hu},
+          <p>If you find <strong>MENTOR</strong> useful, please cite:</p>
+<pre><code>@misc{zhao2025mentor,
+  title        = {MENTOR: Efficient Multimodal-Conditioned Tuning for Autoregressive Vision Generation Models},
+  author       = {Haozhe Zhao and Zefan Cai and Shuzheng Si and Liang Chen and Jiuxiang Gu and Wen Xiao and Junjie Hu},
   year         = {2025},
-  eprint       = {2505.24133},
+  eprint       = {2506.01234},
   archivePrefix= {arXiv},
-  primaryClass = {cs.CL},
-  url          = {https://arxiv.org/abs/2505.24133}
+  primaryClass = {cs.CV},
+  url          = {https://arxiv.org/abs/2506.01234}
 }</code></pre>
-
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
 <!-- ============================= FOOTER ============================= -->
 <footer class="footer has-background-dark">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="WIP"><i class="fas fa-file-pdf" style="color:white"></i></a>
-      <a class="icon-link" href="https://github.com/rkv-project/R-KV"><i class="fab fa-github" style="color:white"></i></a>
+      <a class="icon-link" href="./static/MENTOR_paper.pdf"><i class="fas fa-file-pdf" style="color:white"></i></a>
+      <a class="icon-link" href="https://github.com/mentor-project/MENTOR"><i class="fab fa-github" style="color:white"></i></a>
     </div>
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content has-text-grey-light">
-          <p>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-          <p>Forked from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://github.com/ds1000-code-gen/ds1000-code-gen.github.io">DS-1000</a>. We thank the authors for their work.</p>
+          <p>This website is released under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution‑ShareAlike 4.0 International License</a>.</p>
+          <p>Adapted from templates by <a href="https://nerfies.github.io/">Nerfies</a> and <a href="https://rkv-project.github.io/">R‑KV</a>; we thank their authors.</p>
         </div>
       </div>
     </div>
