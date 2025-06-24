@@ -1,0 +1,215 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2024
+
+
+% ready for submission
+% \usepackage{neurips_2024}
+\usepackage[preprint]{neurips_2024}
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2024}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2024}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2024}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{float}          % 提供 [H] 选项强制浮动体位置（可用于特殊布局控制）
+\usepackage{adjustbox}      % 如果你需要更灵活地控制表格或图像尺寸
+\usepackage{graphicx}       % 用于插入图像
+\usepackage{caption}        % 提供 \captionof 用于非浮动体的标题
+\usepackage{array}          % 表格列格式优化（如 @{} 去掉列间空白）
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{array}
+\usepackage{wrapfig}  % 放在导言区
+
+\usepackage{multirow} 
+\usepackage{graphicx}     % figures (if you later embed any)
+\usepackage{xspace}       % tidy handling of trailing spaces
+\usepackage{url}          % typeset URLs
+\usepackage{hyperref}     % clickable links (loads color/driver‑safe options)
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}     % \begin{lstlisting} … \end{lstlisting}
+\newcommand{\method}{\textsc{XX}\xspace}
+\newcommand{\draftonly}[1]{#1} 
+% Uncomment for submission
+% \renewcommand{\draftonly}[1]{}
+\newcommand{\draftcomment}[3]{\draftonly{{\textcolor{#3}{[\textbf{#1--\textsc{#2}}]}}}}
+\newcommand{\haozhe}[1]{\draftcomment{#1}{Haozhe}{teal}}
+\newcommand{\zefan}[1]{\draftcomment{#1}{Zefan}{orange}}
+\newcommand{\junjie}[1]{\draftcomment{#1}{Junjie}{purple}}
+\usepackage{cleveref}
+\crefname{section}{\S}{\S\S}     % lowercase: \cref{...}
+\Crefname{section}{\S}{\S\S}     % capitalized: \Cref{...}
+\usepackage{subcaption}
+\usepackage{marvosym} 
+\usepackage{pifont}     % \ding{51} 用于对号
+\usepackage{makecell}   % 让表头可换行
+\newcommand{\cmark}{\ding{51}} % 对号
+\newcommand{\model}{\textsc{Mentor}\xspace}
+\newcommand{\ssz}[1]{{\color{red}#1}}
+
+% \title{
+%   \begin{minipage}{0.03\textwidth}
+%     \includegraphics[width=\linewidth]{figures/logo.png}
+%   \end{minipage}
+%   \hfill
+%   \begin{minipage}{0.95\textwidth}
+%     \centering
+%     \textbf{MENTOR: Efficient Multimodal-Conditioned Tuning for Autoregressive Vision Generation Models}
+%   \end{minipage}
+% }
+\title{MENTOR: Efficient Multimodal-Conditioned Tuning for Autoregressive Vision Generation Models}
+
+% \title{
+%     \begin{minipage}{0.2\textwidth}
+%         \includegraphics[height=38pt]{figures/logo.png}
+%     \end{minipage}
+%     \hspace{-0.5in}
+%     \begin{minipage}{0.80\textwidth}
+%         MENTOR: Efficient Multimodal-Conditioned Tuning for Autoregressive Vision Generation Models
+%     \end{minipage}
+% }
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+% \author{%
+%   David S.~Hippocampus\thanks{Use footnote for providing further information
+%     about author (webpage, alternative address)---\emph{not} for acknowledging
+%     funding agencies.} \\
+%   Department of Computer Science\\
+%   Cranberry-Lemon University\\
+%   Pittsburgh, PA 15213 \\
+%   \texttt{hippo@cs.cranberry-lemon.edu} \\
+%   % examples of more authors
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \AND
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+% }
+\author{%
+    Haozhe Zhao$^{1}$$^\ast$,~~Zefan Cai$^{2}$$^\ast$,~~Shuzheng Si$^{3}$,~~Liang Chen$^{4}$,\\
+    ~~\textbf{Jiuxiang Gu}$^{5}$,~~\textbf{Wen Xiao}$^{6}$,~~\textbf{Junjie Hu}$^{2}$
+    % $\text{\Letter}$
+    \\
+    $^{1}$University of Illinois Urbana-Champaign 
+$^{2}$University of
+Wisconsin-Madison \\
+% $^{3}$Department of Computer Science and Technology, Tsinghua University \\
+% $^{4}$School of Computer Science, Peking University \\
+$^{3}$Tsinghua University
+$^{4}$Peking University 
+$^{5}$Adobe Research ~~$^{6}$Microsoft \\
+    % ~~~\Letter~Corresponding author \\
+    \texttt{haozhez6@illinois.edu}\\
+    \href{https://mentor.github.io}{\texttt{mentor.github.io}}
+}
+
+% \author{%
+%     Haozhe Zhao$^{1}$,~~Zefan Cai$^{2}$,~~Shuzheng Si$^{3}$,~~Liang Chen$^{4}$,\\
+%     ~~\textbf{Jiuxiang Gu}$^{5}$,~~\textbf{Wen Xiao}$^{6}$,~~\textbf{Junjie Hu}$^{2}$\thanks{Corresponding author: \texttt{junjie.hu@wisc.edu}} \\
+%     $^{1}$University of Illinois Urbana-Champaign, 
+%     $^{2}$University of Wisconsin-Madison, \\
+%     $^{3}$Tsinghua University, 
+%     $^{4}$Peking University, 
+%     $^{5}$Adobe Research, 
+%     $^{6}$Microsoft
+% }
+
+
+\begin{document}
+
+
+\maketitle
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[1]{Equal contribution.}
+
+\vspace{-5ex}
+\input{sections/00_abstract}
+\input{sections/01_introduction}
+% \input{sections/02_preliminary}
+\input{sections/03_method}
+\input{sections/04_experiments}
+\input{sections/05_relatedwork}
+\input{sections/06_conclusion}
+
+
+
+\bibliography{ref}
+\bibliographystyle{plainnat}
+
+% \input{sections/x_appendix}
+
+\input{sections/supplementary}
+
+% \input{sections/checklist}
+
+% % \input{sections/00_abstract}
+% % \input{sections/01_introduction}
+% % % \input{sections/02_preliminary}
+% % \input{sections/03_method}
+% % \input{sections/04_experiments}
+% % \input{sections/05_relatedwork}
+% % \input{sections/06_conclusion}
+
+
+
+
+
+% \input{sections/supplementary}
+
+% \bibliography{ref}
+% \bibliographystyle{plainnat}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

@@ -1,0 +1,205 @@
+\appendix
+
+\section{DreamBench\texttt{++}: Benchmark Overview}
+\label{app:DreamBench_Plus}
+
+\paragraph{Data Organization.}  
+DreamBench\texttt{++} comprises 150 high-quality reference images, sourced from Unsplash, Rawpixel, and Google Images, encompassing a balanced mix of subjects. These are evenly divided into three broad categories: \textit{objects}, \textit{living subjects} (humans and animals), and \textit{styles} (illustrative, painterly, etc.), ensuring visual and conceptual diversity.
+In total, DreamBench\texttt{++} offers \textbf{1,350 prompts} ($150 \times 9$), representing a substantial scale-up over the original DreamBench (30 subjects $\times$ 25 prompts). Relative to DreamBench, the dataset is \textbf{5$\times$ larger in subjects} and \textbf{54$\times$ larger in prompts}, enabling broader evaluation of generative performance.
+
+\paragraph{Evaluation Metric.}  
+DreamBench\texttt{++} adopts an automatic, GPT-4o-based evaluation protocol designed to closely mirror human judgment. Each generated image is assessed against both its reference image and its corresponding prompt, using two complementary axes:
+
+\begin{itemize}[left=2pt, itemsep=0.5pt,topsep=0.5pt]
+  \item \textbf{Concept Preservation (CP):} Measures fidelity between the generated image and the reference. Key attributes include shape, color, texture, and facial details.
+  \item \textbf{Prompt Following (PF):} Evaluates how well the generation aligns with the prompt in terms of relevance, accuracy, completeness, and contextual appropriateness.
+\end{itemize}
+
+Each axis is scored on a \textbf{five-level ordinal scale} from 0 (Very Poor) to 4 (Excellent), avoiding the complexity and bias of pairwise comparisons.
+
+
+
+\section{Text-to-Image Generation Evaluation}
+
+We evaluate text-to-image (T2I) generation performance on the MS-COCO~\citep{lin2014mscoco} and Geneval~\citep{2024Geneval} benchmarks to assess the generative capability of our model. Results are presented in \Cref{tab:fid_comparison} and \Cref{tab:exp-geneval}.
+Since \model is built upon LLaMaGen, a relatively suboptimal generator, its standalone T2I performance is even weaker than ealy T2I models such as LDM and SD1.5. Unsurprisingly, models built on stronger generators—such as SDXL, SD3 like KOSMOS-G and Dream Engine demonstrate superior performance than ours.
+
+However, despite its relatively limited T2I capacity, \model excels in multimodal image generation. Thanks to our proposed autoregressive architecture and two-stage multimodal-conditioned tuning strategy, \model effectively integrates both visual and textual signals during generation. This multimodal synergy simplifies the generation process and compensates for its weaker base generation capability, enabling \model to outperform stronger T2I models in multimodal settings, as demonstrated in \Cref{tab:comparison}. We expect that incorporating more powerful generators into \model would further enhance its performance. Nonetheless, our results indicate that \model is a promising and efficient alternative to diffusion-based approaches for multimodal image generation.
+
+
+\begin{table*}[t]
+    \centering
+    \caption{GenEval benchmark results for text-to-image generation, classifying methods as either autoregressive or diffusion-based models. Due to our method's model size and suboptimal generators, we experience poor performance in text-to-image generation.}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{@{}cl
+        >{\centering\arraybackslash}m{1.4cm}
+        >{\centering\arraybackslash}m{1.4cm}
+        >{\centering\arraybackslash}m{1.4cm}
+        >{\centering\arraybackslash}m{1.4cm}
+        >{\centering\arraybackslash}m{1.4cm}
+        >{\centering\arraybackslash}m{1.4cm}
+        >{\centering\arraybackslash}m{1.4cm}
+        @{}}
+        \toprule
+         & \textbf{Method} & \textbf{Single Object} & \textbf{Two Object} & \textbf{Counting} & \textbf{Colors} & \textbf{Position} & \textbf{Attribute Binding} & \textbf{Overall} \\
+        \midrule
+
+        \multirow{7}{*}{\rotatebox{90}{\textit{Autoregressive}}}
+        & Chameleon~\cite{2024Chameleon}  & - & - & - & - & - & - & $0.39$ \\
+        & LWM~\cite{2024LWM}  & $0.93$ & $0.41$ & $0.46$ & $0.79$ & $0.09$ & $0.15$ & $0.47$ \\
+        & LlamaGen~\cite{2024llamagen} & $0.71$ & $0.34$ & $0.21$ & $0.58$ & $0.07$ & $0.04$ & $0.32$ \\
+        & Show-o~\cite{2024Showo}  & $0.95$ & $0.52$ & $0.49$ & $0.82$ & $0.11$ & $0.28$ & $0.53$ \\
+        & Emu$3$-Gen~\cite{2024emu3} & $0.98$ & $0.71$ & $0.34$ & $0.81$ & $0.17$ & $0.21$ & $0.54$ \\
+        & Janus~\cite{2024Janus} & $0.97$ & $0.68$ & $0.30$ & $0.84$ & $0.46$ & $0.42$ & $0.61$ \\ 
+        & \model & $0.87$ & $0.38$ & $0.18$ & $0.67$ & $0.08$ & $0.13$ & $0.38$ \\
+        
+        \midrule
+        
+        \multirow{12}{*}{\rotatebox{90}{\textit{Diffusion}}} 
+        & LDM~\cite{2022LDM}  & $0.92$ & $0.29$ & $0.23$ & $0.70$ & $0.02$ & $0.05$ & $0.37$ \\
+        & SDv$1.5$~\cite{2022LDM}  & $0.97$ & $0.38$ & $0.35$ & $0.76$ & $0.04$ & $0.06$ & $0.43$ \\
+        & PixArt-$\alpha$~\cite{2023Pixelartalpha} & $0.98$ & $0.50$ & $0.44$ & $0.80$ & $0.08$ & $0.07$ & $0.48$ \\
+        & SDv$2.1$~\cite{2022LDM} & $0.98$ & $0.51$ & $0.44$ & $0.85$ & $0.07$ & $0.17$ & $0.50$ \\
+        & DALL-E~2~\cite{2022DALLE2} & $0.94$ & $0.66$ & $0.49$ & $0.77$ & $0.10$ & $0.19$ & $0.52$ \\
+        & SDXL~\cite{2023SDXL} & $0.98$ & $0.74$ & $0.39$ & $0.85$ & $0.15$ & $0.23$ & $0.55$ \\
+        & DALL-E~3~\cite{2023dalle3} & $0.96$ & $0.87$ & $0.47$ & $0.83$ & $0.43$ & $0.45$ & $0.67$ \\
+        & SDv3 Medium~\cite{2024SD3} & $0.98$ & $0.74$ & $0.63$ & $0.67$ & $0.34$ & $0.36$ & $0.62$ \\
+        & Flux.1 Dev~\citep{flux} & $0.98$ & $0.81$ & $0.74$ & $0.79$ & $0.22$ & $0.45$ & $0.66$ \\
+        & Dream Engine~\citep{dreamengine} & $1.00$ & $0.94$ & $0.64$ & $0.81$ & $0.27$ & $0.49$ & $0.69$ \\
+        & SDv3.5 Large~\cite{2024SD3} & $0.98$ & $0.89$ & $0.73$ & $0.83$ & $0.34$ & $0.47$ & $0.71$ \\
+
+        \bottomrule
+    \end{tabular}}
+    \label{tab:exp-geneval}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\begin{minipage}{0.30\textwidth}
+\centering
+\caption{Zero-shot FID comparisons on COCO.}
+\label{tab:fid_comparison}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Methods} & \textbf{FID} $\downarrow$ \\ \midrule
+\multicolumn{2}{l}{\textit{T2I Models}} \\ 
+GLIDE~\citep{GLIDE}        & 12.24 \\
+Make-A-Scene~\citep{Make-a-Scene}    & 11.84 \\
+DALL-E 2~\cite{2022DALLE2}      & 10.39 \\
+SD v1.5 ~\cite{sd}       & 9.34  \\
+Imagen~\citep{2022Imagen}    & 7.27  \\ \midrule
+\multicolumn{2}{l}{\textit{CLIP-Aligned VL2I Models}} \\ 
+GILL~\citep{koh2023GILL}         & 12.20 \\
+Emu~\citep{sun2023emu1}     & 11.66 \\
+KOSMOS-G~\citep{Kosmos-G}                 & 10.99 \\ \midrule
+\model        & 19.92 \\ 
+\bottomrule
+\end{tabular}%
+}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.68\textwidth}
+\centering
+\caption{Details on dataset used in the two-stage training.}
+\label{tab:dataset}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}cllc@{}}
+\toprule
+\textbf{Stage} & \textbf{Data Source} & \textbf{Task} & \textbf{Number} \\
+\midrule
+\multirow{3}{*}{1} & Midjourney~\citep{midjourney-niji-1m-llavanext} & T2I & 700k \\
+ & Midjourney~\citep{midjourney-niji-1m-llavanext} & Img Rec. & 180k \\
+ & Synthetic Data & Obj. Sec.& 1.6M \\
+\midrule
+\multirow{4}{*}{2}  & Midjourney~\citep{midjourney-niji-1m-llavanext} \& Synthetic Data & T2I & 600k \\
+ & Synthetic Data & Obj. Sec.  & 150k \\
+ & Synthetic Data \& CC12M~\citep{changpinyo2021cc12m} & Img. Recov.  & 150k \\
+ & Subject200k~\citep{OminiControl} & Sub. Gen.  & 400k \\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\end{table}
+
+
+\section{Experimental Setup}
+\label{app:exp_detail}
+
+
+\subsection{Dataset Construction and Formation}
+\label{app:data_form}
+
+Table~\ref{tab:dataset} summarizes the datasets used in our two-stage training framework. Each stage is designed to progressively enhance distinct capabilities of the model using a diverse collection of multimodal data sources. In total, approximately 3 million samples are employed, with Stage 1 comprising around 2.5 million samples and Stage 2 involving 1.3 million samples, including an overlap of roughly 800k examples.
+The dataset is constructed from a combination of open-source resources, such as Midjourney~\citep{midjourney-niji-1m-llavanext} and CC12M~\citep{changpinyo2021cc12m}, along with synthetic data generated via publicly available text-to-image (T2I) models, including Flux.1~\citep{flux} and Stable Diffusion v3.5~\citep{2024SD3}.
+
+\textbf{Stage 1} focuses on establishing foundational multimodal alignment capabilities. Specifically, it includes 700k T2I samples from Midjourney~\citep{midjourney-niji-1m-llavanext}, 180k image reconstruction samples also from Midjourney, and 1.6M object segmentation samples generated through our pipeline.
+
+\textbf{Stage 2} fine-tunes the model with 1.3 million samples. This includes 600k T2I samples—200k from Midjourney and 400k synthesized using open-source T2I models such as Flux.1~\citep{flux} and Stable Diffusion v3.5~\citep{2024SD3}. Additionally, we include 150k object segmentation samples and 150k image recovery samples, all derived from synthetic data using segmentation masks. Background images for the image recovery task are randomly selected from CC12M~\citep{changpinyo2021cc12m}.
+We further incorporate 400k subject-driven image generation samples from Subject200k~\citep{OminiControl}. These samples are re-captioned using large multimodal models (LMMs) to extract subject-relevant text and generate comprehensive image descriptions. To enrich the training set, we reverse the input-output image pairs, effectively doubling the usable data to 400k samples.
+
+
+
+
+\subsection{Implementation Details}
+\label{app:imp_detail}
+
+The multimodal encoder is initialized using vision encoder from CLIP-Large-Patch14~\citep{Radford2021LearningTV} and Flant5-XL-Encoder~\citep{flant5}, with an image receptive field of 224×224.
+To implement the MLP-based Projection, we train the MLP Projector on LLaVA-CC3M-Pretrain-595K data~\citep{liu2023llava}, keeping the vision and text encode frozen following the setting of LLAVA alignment training. For the Query-based Token Distillation, the model is initialized with BLIP2-Flant5-XL~\citep{li2023blip2}.
+The autoregressive generator is initialized from LlamaGen-XL~\citep{llamagen} with the size of 775M. The projector is a two-layer MLP featuring a middle projection dimension of 4,096 and employs SiLU as the activation function. 
+The model is trained in two stages on 8 A100 GPUs, each with 80 GB of memory, taking approximately 1.5 days in total.
+
+\subsection{Training Details}
+\label{app:training_details}
+
+In \textbf{Stage 1}, we freeze the multimodal encoder and train only the projector and generator modules for one epoch using a global batch size of 128. We adopt the Adam optimizer with an initial learning rate of 5e-4, apply linear warm-up over the first 5\% of total steps, and use a cosine decay schedule thereafter.
+
+In \textbf{Stage 2}, we fine-tune the entire model except the vision encoder for two epochs. The learning rate is reduced to 1e-4, while all other optimization settings remain consistent with Stage 1. This stage focuses on enhancing cross-modal integration and improving the model’s ability to condition image generation on both visual and textual inputs.
+
+For the ablation studies, we follow the same training schedule: one epoch on Stage 1 data, followed by two epochs on Stage 2 data.
+
+In the \textbf{multi-image training} setting, we extend the context length of \model to 1280 tokens, allowing up to 4 images per context. We utilize 1.5 million multi-image samples, each containing multiple segmented sub-images and a corresponding caption. The model is tasked with reconstructing the original image from these segmented inputs and textual descriptions. To train this capability, we mix Stage 2 data with the multi-image data and train for an additional epoch.
+
+Detailed training configurations and representative data examples are provided in the supplementary materials.
+
+
+\section{Data Construction}
+\label{app:data_construct}
+
+To support the large-scale training required for our two-stage paradigm, we developed an automated pipeline for generating high-quality multimodal training data. This pipeline combines open-source image datasets with state-of-the-art vision-language models (VLMs) and segmentation models, enabling the construction of richly annotated image-text pairs with multiple segmented foreground objects without manual labeling:
+% As depicted in \Cref{fig:data_pipeline}, the pipeline operates as follows:
+\begin{itemize}[left=2pt]
+    \item \textbf{Captioning and Object Extraction:} Query a VLM to generate a comprehensive caption describing prominent elements in the image and then extract a list of concrete, distinct, and segmentable objects. It ensures generated data focus on concrete visual objects.
+    % This ensures downstream tasks focus on tangible visual entities.
+    \item \textbf{Spatial Grounding:} For each extracted object, the VLM is queried again to identify its spatial location within the image, returning both a tight bounding box and several representative 2D keypoints. These spatial cues constrain the region of interest for subsequent segmentation, improving accuracy and reducing background noise.
+    \item \textbf{Segmentation:} A segmentation model is employed to extract object masks from the image, guided by the generated bounding boxes and keypoints. This step produces high-quality masks that are both semantically aligned with the object labels and spatially accurate.
+\end{itemize}
+By applying this automated process to a large corpus of open-source images, we construct a diverse multimodal dataset comprising captioned images annotated with multiple precisely segmented objects. This dataset forms a critical component of our training setup, particularly enabling the object segmentation and image recovery tasks in our training paradigm.
+
+
+
+% \section{KOSMOS-G Post-Training and Inference Details}
+% \label{apx:video_model_details}
+
+% For post-training during alignment tuning, we used the t2v-turbo-v1 codebase \cite{li2024t2v}, available at \url{https://github.com/Ji4chenLi/t2v-turbo}. A reward model loss scale of 1 was applied. The video model was jointly trained with both the reward model loss and the diffusion loss over 200 steps, using data sampled from the WebVideo dataset.
+
+% For inference, we also utilized the same t2v-turbo-v1 codebase. Each inference setting was run 10 times with different random seed to ensure consistency and robustness of the results.
+
+
+
+\section{Versatility Across Different Multimodal Tasks}
+\label{app:applications}
+To evaluate the broader applicability of our framework, we test its adaptability across diverse multimodal generation tasks, including image segmentation, subject-driven image generation, multi-image generation, and multimodal in-context image generation.
+For each task, we perform supervised fine-tuning as needed. Specifically, for \textbf{image segmentation}, we evaluate the model directly after Stage 1 training. For \textbf{subject-driven image generation}, we use the model trained up to Stage 2 without additional fine-tuning.
+For \textbf{multi-image generation}, we use the X2I dataset~\citep{OmniGen}, fine-tuning the Stage 2 model for two additional epochs. We manually split the dataset into training and test sets, ensuring no overlap between them. Quantitative results are reported on the test set.
+For \textbf{multimodal in-context image generation}, we use the X2I-ICL dataset~\citep{OmniGen}, which focuses on in-context image segmentation tasks. We fine-tune the model for 10 epochs, again ensuring a strict train-test split with no overlap.
+Qualitative results in \Cref{fig:examples} demonstrate that \model produces coherent, high-quality outputs that follow the provided constraints—without requiring any architectural modifications. Additional qualitative analyses and examples are included in the supplementary materials.
+
+
+
+\section{Limitations}
+\label{app:limitation}
+
+Our work presents a promising alternative to diffusion-based methods for multimodal-conditioned image generation. As such, our focus is on evaluating performance under comparable conditions—i.e., with similar model capacities and training paradigms.
+However, the effectiveness of our approach is currently constrained by the limitations of available autoregressive (AR) backbone models. Due to the lack of high-performance AR generators, \model exhibits shortcomings in several aspects of image generation, including spatial reasoning, object counting, fine-grained human rendering, and stylization. These limitations reflect the current gap between current SOTA diffusion and autoregressive architectures in terms of generation fidelity and domain generalization.
+Additionally, while our training data is sourced from publicly available datasets and our synthetic data pipeline includes NSFW safeguards, a comprehensive evaluation of safety, fairness, and potential misuse remains lacking. Future work should incorporate thorough assessments of model biases and unintended behaviors.
+Finally, while our framework demonstrates strong versatility across diverse multimodal tasks, achieving competitive performance in specific domains may require more specialized training and the integration of more powerful multimodal encoders and generators. These initial findings nonetheless highlight the framework's potential as a unified and efficient foundation for conditional multimodal image generation.
