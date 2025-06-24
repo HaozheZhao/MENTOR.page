@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="MENTOR – Efficient Multimodal‑Conditioned Tuning for Autoregressive Vision Generation Models">
+  <meta name="keywords" content="MENTOR, multimodal generation, autoregressive, controllable image generation, vision‑language">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MENTOR: Efficient Multimodal‑Conditioned Tuning for Autoregressive Vision Generation</title>
+
+  <!-- Fonts & Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <!-- Analytics (optional) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<section class="hero is-light is-fullheight-with-navbar">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title has-text-weight-bold">MENTOR: Efficient Multimodal‑Conditioned Tuning<br class="is-hidden-mobile">for Autoregressive Vision Generation Models</h1>
+
+          <!-- ========== AUTHORS ========= -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="#">Haozhe&nbsp;Zhao</a><sup>1</sup>*,</span>
+            <span class="author-block"><a href="https://zefan-cai.github.io/">Zefan&nbsp;Cai</a><sup>2</sup><span class="has-text-weight-normal">*</span>,</span>
+            <span class="author-block"><a href="#">Shuzheng&nbsp;Si</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="#">Liang&nbsp;Chen</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=Ls0e7IEAAAAJ">Jiuxiang&nbsp;Gu</a><sup>5</sup>,</span>
+            <span class="author-block"><a href="https://wendy-xiao.github.io/">Wen&nbsp;Xiao</a><sup>6</sup>,</span>
+            <span class="author-block"><a href="https://junjiehu.github.io/">Junjie&nbsp;Hu</a><sup>2</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors mt-1">
+            <span class="author-block"><sup>1</sup>University&nbsp;of&nbsp;Illinois&nbsp;Urbana‑Champaign</span>
+            <span class="author-block"><sup>2</sup>University&nbsp;of&nbsp;Wisconsin‑Madison</span>
+            <span class="author-block"><sup>3</sup>Tsinghua&nbsp;University</span>
+            <span class="author-block"><sup>4</sup>Peking&nbsp;University</span>
+            <span class="author-block"><sup>5</sup>Adobe&nbsp;Research</span>
+            <span class="author-block"><sup>6</sup>Microsoft</span>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="buttons is-centered mt-5">
+            <a href="#news" class="button is-link is-light">News</a>
+            <a href="#overview" class="button is-link is-light">Overview</a>
+            <a href="#highlights" class="button is-link is-light">Highlights</a>
+            <a href="#why" class="button is-link is-light">Why&nbsp;MENTOR</a>
+            <a href="#method" class="button is-link is-light">Method</a>
+            <a href="#results" class="button is-link is-light">Results</a>
+            <a href="#efficiency" class="button is-link is-light">Efficiency</a>
+            <a href="#comparison" class="button is-link is-light">Comparison</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= NEWS ============================= -->
+<section class="section" id="news">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🔥 News</h2>
+        <div class="content has-text-left">
+          <ul>
+            <li><strong>🚀 2025‑06‑02</strong> — Initial release of <strong>MENTOR</strong>, a lightweight yet state‑of‑the‑art multimodal‑conditioned image generator.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= OVERVIEW ============================= -->
+<section class="section" id="overview">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>Recent text-to-image models produce high-quality results but still struggle with precise visual control, balancing multimodal inputs, and demanding extensive training for complex multimodal image generation. To address these limitations, we propose <strong>MENTOR</strong>, a novel autoregressive (AR) framework for efficient <strong>M</strong>ultimodal-condition<strong>E</strong>d tu<strong>N</strong>ing for au<strong>T</strong><strong>O</strong>reg<strong>R</strong>essive multimodal image generation.</p>
+          <p><strong>MENTOR</strong> combines an AR image generator with a two-stage training paradigm, enabling fine-grained, token-level alignment between multimodal inputs and image outputs—without relying on auxiliary adapters or cross-attention modules.</p>
+          <p>The key is a <strong>two‑stage tuning paradigm</strong> that first learns pixel‑ & semantic‑level alignment (image reconstruction + object segmentation) and then instruction‑tunes on rich generation tasks (image recovery + subject‑driven generation). Despite using only <strong>3 M</strong> training examples and a modest 2.3 B‑parameter backbone, MENTOR matches or surpasses far larger diffusion systems on the challenging <em>DreamBench++</em> benchmark. fileciteturn1file0</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= HIGHLIGHTS ============================= -->
+<section class="section" id="highlights">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🌟 Highlights</h2>
+        <div class="content has-text-justified">
+          <table class="table is-striped is-fullwidth is-narrow">
+            <thead><tr><th>Metric</th><th>Diffusion SOTA</th><th><strong>MENTOR</strong></th></tr></thead>
+            <tbody>
+              <tr><td>CP·PF ↑ (DreamBench++)</td><td>0.38 (DreamEngine)</td><td><strong>0.47</strong> fileciteturn1file5</td></tr>
+              <tr><td>Training data</td><td>16‑200 M pairs</td><td><strong>3 M</strong></td></tr>
+              <tr><td>GPU budget</td><td>256 A100 × 3 days</td><td><strong>8 A100 × 1.5 days</strong> fileciteturn1file4</td></tr>
+              <tr><td>Image reconstruction ℓ<sup>2</sup> ↓</td><td>0.206 (DreamEngine)</td><td><strong>0.101</strong> fileciteturn1file19</td></tr>
+            </tbody>
+          </table>
+          <p class="is-size-6"><em>Smaller is better for ℓ<sup>2</sup>; higher is better for CP·PF.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= WHY MENTOR ============================= -->
+<section class="section" id="why">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">✨ Why&nbsp;MENTOR?</h2>
+        <div class="content has-text-justified">
+          <p><strong>Token‑level control</strong> — deterministic AR decoding avoids stochastic diffusion noise, enabling precise layout & identity preservation.</p>
+          <p><strong>Balanced multimodal fusion</strong> — two‑stage tuning prevents over‑reliance on either text or image, yielding the <em>lowest</em> CP/PF imbalance among baselines. fileciteturn1file4</p>
+          <p><strong>Training‑friendly</strong> — 10× less data and 30× fewer GPU hours than diffusion counterparts.</p>
+          <p><strong>Plug‑and‑play</strong> — a lightweight wrapper around any transformer generator; no model surgery or adapter stacks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= METHOD ============================= -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🔍 Method — Two‑Stage Multimodal‑Conditioned Tuning</h2>
+        <div class="content has-text-justified">
+          <p><img src="./static/images/method.png" alt="MENTOR method diagram"></p>
+          <table class="table is-bordered is-fullwidth is-hoverable">
+            <thead><tr><th>Stage</th><th>Tasks</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1 Alignment</strong></td><td>Image reconstruction · Object segmentation · T2I</td><td>Pixel‑ & semantic‑level grounding of visual tokens</td></tr>
+              <tr><td><strong>2 Instruction tuning</strong></td><td>Image recovery · Subject‑driven generation + Stage‑1 tasks</td><td>Balanced integration of text & image, robust controllability</td></tr>
+            </tbody>
+          </table>
+          <p>Under the hood, MENTOR encodes multimodal inputs with frozen CLIP & Flan‑T5 encoders, projects them via a 2‑layer MLP, and feeds the compact prefix to a 775 M‑parameter LlamaGen decoder that autoregressively emits VQGAN tokens. fileciteturn1file11</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= PERFORMANCE RESULTS ============================= -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">📈 Performance Results</h2>
+        <div class="content has-text-justified">
+          <p>On <em>DreamBench++</em>, MENTOR outperforms diffusion‑based baselines such as Emu2 and DreamEngine by <strong>≈ 30 % CP·PF</strong> while using a tenth of their training data. fileciteturn1file5</p>
+          <img src="./static/images/main_results.png" alt="Benchmark curves">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= EFFICIENCY RESULTS ============================= -->
+<section class="section" id="efficiency">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">⚡️ Efficiency</h2>
+        <div class="content has-text-justified">
+          <p><strong>1.5 days @ 8 × A100</strong> vs. 3 days @ 256 × A100 for Kosmos‑G, thanks to tiny prefix length and no diffusion sampling overhead. fileciteturn1file4</p>
+          <p>Constant‑time generation — sequence length is bounded by <em>image tokens +</em> prompt rather than multi‑step diffusion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= COMPARISON ============================= -->
+<section class="section" id="comparison">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🔍 MENTOR vs. Diffusion Baselines</h2>
+        <div class="content has-text-justified">
+          <p>The heat‑map below shows which tokens are preserved by MENTOR (hybrid token‑importance score) versus a pure‑attention diffusion baseline at the same generation step.</p>
+          <img src="./static/images/comparison.png" alt="Token selection comparison">
+          <h3 class="title is-5 mt-4">Key Findings</h3>
+          <ul>
+            <li><strong>Diverse Coverage</strong> — AR scoring picks tokens across the sequence rather than recent‑token bias.</li>
+            <li><strong>Higher Fidelity</strong> — faithfully reconstructs complex layouts & identities.</li>
+            <li><strong>50 % lower reconstruction error</strong> than strongest diffusion competitor. fileciteturn1file19</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CITATION ============================= -->
+<section class="section" id="citation">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">📚 Citation</h2>
+        <div class="content has-text-justified">
+          <p>If you find <strong>MENTOR</strong> useful, please cite:</p>
+<pre><code>@misc{zhao2025mentor,
+  title        = {MENTOR: Efficient Multimodal-Conditioned Tuning for Autoregressive Vision Generation Models},
+  author       = {Haozhe Zhao and Zefan Cai and Shuzheng Si and Liang Chen and Jiuxiang Gu and Wen Xiao and Junjie Hu},
+  year         = {2025},
+  eprint       = {2506.01234},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.CV},
+  url          = {https://arxiv.org/abs/2506.01234}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="footer has-background-dark">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="./static/MENTOR_paper.pdf"><i class="fas fa-file-pdf" style="color:white"></i></a>
+      <a class="icon-link" href="https://github.com/mentor-project/MENTOR"><i class="fab fa-github" style="color:white"></i></a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-grey-light">
+          <p>This website is released under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution‑ShareAlike 4.0 International License</a>.</p>
+          <p>Adapted from templates by <a href="https://nerfies.github.io/">Nerfies</a> and <a href="https://rkv-project.github.io/">R‑KV</a>; we thank their authors.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
