@@ -56,16 +56,28 @@
           <!-- Action Buttons -->
           <div class="buttons is-centered mt-5">
             <a href="#news" class="button is-link is-light">News</a>
-            <a href="#introduction" class="button is-link is-light">Introduction</a>
             <a href="#overview" class="button is-link is-light">Overview</a>
             <a href="#highlights" class="button is-link is-light">Highlights</a>
             <a href="#why" class="button is-link is-light">Why&nbsp;MENTOR</a>
             <a href="#method" class="button is-link is-light">Method</a>
             <a href="#results" class="button is-link is-light">Results</a>
-            <a href="#efficiency" class="button is-link is-light">Efficiency</a>
-            <a href="#comparison" class="button is-link is-light">Comparison</a>
             <a href="#applications" class="button is-link is-light">Applications</a>
           </div>
+
+          <div class="buttons is-centered mt-3">
+  <a href="https://huggingface.co/datasets/BleachNick/Mentor_Stage1" class="button is-info is-light">
+    📦 Dataset
+  </a>
+  <a href="https://huggingface.co/BleachNick/Mentor" class="button is-info is-light">
+    🧠 Model
+  </a>
+  <a href="https://github.com/HaozheZhao/MENTOR" class="button is-dark is-light">
+    <i class="fab fa-github mr-1"></i> GitHub
+  </a>
+  <a href="https://arxiv.org/abs/" class="button is-danger is-light">
+    📄 arXiv
+  </a>
+</div>
 
         </div>
       </div>
@@ -89,69 +101,34 @@
   </div>
 </section>
 
-<!-- ============================= INTRODUCTION ============================= -->
-<section class="section" id="introduction">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Introduction</h2>
-        <div class="content has-text-justified">
-          <figure class="image is-pulled-right" style="width: 50%; margin-left: 20px;">
-            <img src="./figures/Figure.png" alt="CP·PF score comparison">
-            <figcaption class="has-text-centered"><strong style="color: #ED8B50;">MENTOR</strong> vs <strong style="color: #5A76A9;">other baselines</strong> on DreamBench++. Circle size represents CP·PF score. Models in lower left achieve the best efficiency.</figcaption>
-          </figure>
-          
-          <p>Recent progress in generative models has revolutionized text-to-image (T2I) generation. However, real-world applications often require more than text-only prompts. To achieve high-quality image generation with fine-grained control, models need to seamlessly integrate multi-modal inputs, such as reference images with detailed instructions. This poses significant challenges for existing diffusion models that are predominantly focused on T2I generation.</p>
-          
-          <p>To address this, researchers have recently employed Large Multimodal Models (LMMs) to encode diverse inputs into unified embeddings compatible with diffusion models. While this approach aids in handling complex prompts for generation like interleaved image-text instructions or multimodal in-context learning, several key limitations persist when scaling to complex multimodal control:</p>
-          
-          <h3 class="title is-5">Key Challenges</h3>
-          <ul>
-            <li><strong>First,</strong> the randomness of diffusion processes hinders precise, deterministic control, which is essential for high-fidelity tasks like image reconstruction.</li>
-            <li><strong>Second,</strong> balancing guidance from different modalities remains challenging. Existing methods frequently exhibit modality imbalance, often over-emphasizing one modality while neglecting others. For instance, IP-Adapter and Lumina-mGPT, conditioned on text and image features, may overly favor image inputs.</li>
-            <li><strong>Third,</strong> many diffusion-based methods, particularly those with auxiliary alignment components (e.g., learned adapters, regression heads, specialized embeddings), demand large-scale training, incurring substantial computational costs.</li>
-          </ul>
-          
-          <p>These challenges raise a critical question: <em>Is there a more efficient and controllable paradigm for balancing complex multimodal conditions in image generation?</em></p>
-          
-          <h3 class="title is-5">Our Solution</h3>
-          <p>To address these limitations, we propose <strong>MENTOR</strong>, a straightforward and efficient autoregressive (AR) framework for controllable multimodal image generation. Unlike diffusion models that rely on complex cross-attention layers for multimodal conditioning and demand extensive training resources, MENTOR leverages a unified transformer architecture that directly aligns multimodal inputs with output image tokens. This design inherently simplifies architecture and training, reduces the need for auxiliary components for alignment, and significantly lowers training requirements.</p>
-          
-          <p>Our framework employs a multimodal encoder to project multimodal inputs into a unified representation. An AR transformer decoder then generates image tokens deterministically, conditioned on this representation. To ensure effective and balanced modality integration, we adopt our two-stage training paradigm.</p>
-          
-          <h3 class="title is-5">Results</h3>
-          <p>Notably, despite its simplicity and the use of suboptimal checkpoints, MENTOR achieves state-of-the-art (SOTA) performance on the challenging DreamBench++ benchmark—using <strong>10× less training data</strong> than leading baselines. It outperforms resource-intensive baselines with powerful generators like SDXL and SD3 by <strong>30%</strong> while dramatically reducing computational and data demands.</p>
-          
-          <h3 class="title is-5">Contributions</h3>
-          <p>Overall, our contributions are as follows:</p>
-          <ol>
-            <li>A novel autoregressive framework for efficient multimodal generation, achieving SOTA performance</li>
-            <li>A two-stage training strategy for multimodal-conditioned tuning, enabling robust alignment and balanced modality integration with significantly reduced training cost</li>
-            <li>Extensive experiments demonstrating the superior efficiency, controllability, and fidelity of MENTOR as a compelling alternative to diffusion-based methods</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============================= OVERVIEW ============================= -->
 <section class="section" id="overview">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Overview</h2>
+        <h2 class="title is-3">🧠 Overview</h2>
         <div class="content has-text-justified">
-          <p>Recent text-to-image models produce high-quality results but still struggle with precise visual control, balancing multimodal inputs, and demanding extensive training for complex multimodal image generation. To address these limitations, we propose <strong>MENTOR</strong>, a novel autoregressive (AR) framework for efficient <strong>M</strong>ultimodal-condition<strong>E</strong>d tu<strong>N</strong>ing for au<strong>T</strong><strong>O</strong>reg<strong>R</strong>essive multimodal image generation.</p>
-          <p><strong>MENTOR</strong> combines an AR image generator with a two-stage training paradigm, enabling fine-grained, token-level alignment between multimodal inputs and image outputs—without relying on auxiliary adapters or cross-attention modules.</p>
-          <p>Central to our method is the <strong>two‑stage training paradigm</strong>:</p>
-          <ol>
-            <li>A <em>multimodal alignment stage</em> that establishes robust pixel and semantic‑level alignment between inputs and generated tokens</li>
-            <li>A <em>multimodal instruction tuning stage</em> that balances model's integration of multimodal inputs and enhances generation controllability</li>
-          </ol>
-          <p>Extensive experiments demonstrate that, despite a modest model size, suboptimal base components, and limited training resources, <strong>MENTOR</strong> achieves a strong balance between concept preservation and prompt following on DreamBench++ benchmark, outperforming competitive baselines.</p>
-          <p>Additionally, our method also delivers superior image reconstruction fidelity, broad adaptability across multimodal tasks, and an efficient training budget compared to diffusion‑based counterparts.</p>
-          <p>The dataset, code, and models are available at <a href="https://github.com/HaozheZhao/MENTOR">github.com/HaozheZhao/MENTOR</a>.</p>
+
+          <figure class="image is-pulled-right" style="width: 50%; margin-left: 20px;">
+            <img src="./figures/Figure.png" alt="CP·PF score comparison">
+            <figcaption class="has-text-centered">
+              <strong style="color: #ED8B50;">MENTOR</strong> vs <strong style="color: #5A76A9;">baselines</strong> on DreamBench++. Circle size = CP·PF score.
+            </figcaption>
+          </figure>
+
+          <p><strong>MENTOR</strong>, a lightweight autoregressive (AR) framework for controllable multimodal image generation. Unlike diffusion models that rely on stochastic sampling and heavy training, MENTOR leverages a unified transformer to directly align multimodal inputs with output image tokens, enabling precise, token-level control with significantly fewer resources.</p>
+
+          <p>Our <strong>two-stage training</strong> ensures balanced fusion across modalities and avoids over-reliance on either text or visual cues.</p>
+
+          <ul>
+            <li>🚀 10× less data & fewer GPU hours than diffusion-based models</li>
+            <li>📈 SOTA on DreamBench++ with CP·PF score of <strong>0.47</strong></li>
+            <li>🎯 Effective for diverse downstream tasks: image reconstruction, subject-driven generation, multimodal ICL</li>
+          </ul>
+
+          <p>Code, data, and models available at:
+            <a href="https://github.com/HaozheZhao/MENTOR">github.com/HaozheZhao/MENTOR</a>
+          </p>
         </div>
       </div>
     </div>
@@ -168,10 +145,10 @@
           <table class="table is-striped is-fullwidth is-narrow">
             <thead><tr><th>Metric</th><th>Diffusion SOTA</th><th><strong>MENTOR</strong></th></tr></thead>
             <tbody>
-              <tr><td>CP·PF ↑ (DreamBench++)</td><td>0.38 (DreamEngine)</td><td><strong>0.47</strong> fileciteturn1file5</td></tr>
+              <tr><td>CP·PF ↑ (DreamBench++)</td><td>0.36 (Emu2)</td><td><strong>0.47</strong></td></tr>
               <tr><td>Training data</td><td>16‑200 M pairs</td><td><strong>3 M</strong></td></tr>
-              <tr><td>GPU budget</td><td>256 A100 × 3 days</td><td><strong>8 A100 × 1.5 days</strong> fileciteturn1file4</td></tr>
-              <tr><td>Image reconstruction ℓ<sup>2</sup> ↓</td><td>0.206 (DreamEngine)</td><td><strong>0.101</strong> fileciteturn1file19</td></tr>
+              <tr><td>GPU budget</td><td>256 GPU × 3 days(Kosmos-G)</td><td><strong>8 GPU × 1.5 days</strong></td></tr>
+              <tr><td>Image reconstruction ℓ<sup>2</sup> ↓</td><td>0.206 (DreamEngine)</td><td><strong>0.101</strong></td></tr>
             </tbody>
           </table>
           <p class="is-size-6"><em>Smaller is better for ℓ<sup>2</sup>; higher is better for CP·PF.</em></p>
@@ -190,8 +167,7 @@
         <div class="content has-text-justified">
           <p><strong>Token‑level control</strong> — deterministic AR decoding avoids stochastic diffusion noise, enabling precise layout & identity preservation.</p>
           <p><strong>Balanced multimodal fusion</strong> — two‑stage tuning prevents over‑reliance on either text or image, yielding the <em>lowest</em> CP/PF imbalance among baselines. fileciteturn1file4</p>
-          <p><strong>Training‑friendly</strong> — 10× less data and 30× fewer GPU hours than diffusion counterparts.</p>
-          <p><strong>Plug‑and‑play</strong> — a lightweight wrapper around any transformer generator; no model surgery or adapter stacks.</p>
+          <p><strong>Training‑friendly</strong> — 10× less data and fewer GPU hours than diffusion counterparts.</p>
         </div>
       </div>
     </div>
@@ -207,50 +183,43 @@
         <div class="content has-text-justified">
           <p><img src="./figures/model_stagev2.png" alt="MENTOR method diagram"></p>
           
-          <h3>Model Architecture</h3>
-          <p>MENTOR comprises two core components: a <strong>multimodal encoder</strong> and an <strong>autoregressive generation decoder</strong>. These components are designed to unify multimodal inputs into a shared embedding and generate image tokens sequentially conditioned on the unified embedding.</p>
-          
-          <p><strong>Multimodal Encoder:</strong> Integrates multimodal inputs from frozen pretrained vision (CLIP) and language (Flan-T5) encoders into a shared latent space. A lightweight 2-layer MLP projection layer bridges the encoder's output to the decoder's input embedding space. To manage computational costs while preserving visual details, we investigate two connector architectures:</p>
-          <ul>
-            <li><strong>MLP-based Projection:</strong> Direct projection of visual tokens to maintain detailed visual semantics with minimal information loss</li>
-            <li><strong>Query-based Token Distillation:</strong> Query-Former that compresses lengthy visual token sequences into a fixed-size representation, guided by textual queries</li>
-          </ul>
-          
-          <p><strong>Autoregressive Generation Decoder:</strong> A 775M-parameter transformer-based LlamaGen decoder generates image token sequences conditioned on the multimodal prefix. It operates in a shared embedding space with the encoder's output and uses the same discrete token vocabulary as the VQGAN employed for image tokenization. Generated tokens are decoded into images using the VQGAN decoder.</p>
-          
-          <h3>Training Objective</h3>
-          <p>The model employs <em>teacher forcing</em> to predict image tokens, conditioned on previously generated tokens and multimodal context. The training objective minimizes token-level cross-entropy loss. To enhance controllability, we apply Classifier-Free Guidance (CFG) during both training and inference phases.</p>
-          
           <h3>Two-Stage Training Paradigm</h3>
-          <table class="table is-bordered is-fullwidth is-hoverable">
-            <thead><tr><th>Stage</th><th>Tasks</th><th>Purpose</th></tr></thead>
+          <table class="table is-fullwidth is-hoverable is-bordered has-text-centered">
+            <thead class="has-background-light">
+              <tr>
+                <th style="width: 20%;">Stage</th>
+                <th style="width: 40%;">Tasks</th>
+                <th style="width: 40%;">Objective</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
-                <td><strong>Stage 1: Multimodal Alignment Tuning</strong></td>
+                <td><strong>Stage 1</strong><br><em>Alignment</em></td>
                 <td>
-                  <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Image reconstruction:</strong> Faithfully reconstruct input image conditioned on itself</li>
-                    <li><strong>Object segmentation:</strong> Generate end-to-end segmented figure for target object</li>
-                    <li><strong>T2I generation:</strong> Generate images from text captions</li>
+                  <ul style="margin: 0; list-style-type: none; padding-left: 0;">
+                    <li>• Image Reconstruction</li>
+                    <li>• Object Segmentation</li>
+                    <li>• Text-to-Image (T2I)</li>
                   </ul>
                 </td>
-                <td>Enhance both pixel and semantic-level modality alignment; prevent trivial copy-paste behavior</td>
+                <td>Enhance pixel and semantic alignment</td>
               </tr>
               <tr>
-                <td><strong>Stage 2: Multimodal Instruction Tuning</strong></td>
+                <td><strong>Stage 2</strong><br><em>Instruction Tuning</em></td>
                 <td>
-                  <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Image recovery:</strong> Reconstruct original from distorted images (rotated, resized, composited)</li>
-                    <li><strong>Subject-driven generation:</strong> Generate based on reference image, subject label, and text instruction</li>
-                    <li><strong>Plus all Stage 1 tasks</strong></li>
+                  <ul style="margin: 0; list-style-type: none; padding-left: 0;">
+                    <li>• Image Recovery</li>
+                    <li>• Subject-Driven Generation</li>
                   </ul>
                 </td>
-                <td>Robust instruction-following and cross-modal reasoning; balanced integration preventing over-reliance on single modality</td>
+                <td>Achieve robust and balanced multimodal integration</td>
               </tr>
             </tbody>
           </table>
+
           
           <h3>Data Construction</h3>
+          <p><img src="./figures/data_construct.png" alt="MENTOR data_construct"></p>
           <p>We construct a large-scale multimodal dataset comprising approximately <strong>3 million samples</strong> across all training tasks through an automated pipeline that combines state-of-the-art language-vision models with segmentation models. The dataset integrates:</p>
           <ul>
             <li>Open-source resources (CC12M, Midjourney-Niji)</li>
@@ -351,85 +320,10 @@
       </div>
     </div>
   </div>
-</section>
 
-<!-- ============================= EFFICIENCY RESULTS ============================= -->
-<section class="section" id="efficiency">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">⚡️ Efficiency</h2>
-        <div class="content has-text-justified">
-          <h3 class="title is-5">Training Efficiency Comparison</h3>
-          <table class="table is-bordered is-fullwidth is-hoverable">
-            <thead>
-              <tr>
-                <th>Method</th>
-                <th>Training Data</th>
-                <th>Model Size</th>
-                <th>GPU Resources</th>
-                <th>Training Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Unified-IO2</td>
-                <td>8.5B pairs</td>
-                <td>7.00B</td>
-                <td>Not reported</td>
-                <td>Not reported</td>
-              </tr>
-              <tr>
-                <td>Kosmos-G</td>
-                <td>200M pairs</td>
-                <td>3.00B</td>
-                <td>256 × A100</td>
-                <td>3 days</td>
-              </tr>
-              <tr>
-                <td>Emu2</td>
-                <td>16M pairs</td>
-                <td>37.00B</td>
-                <td>Not reported</td>
-                <td>Not reported</td>
-              </tr>
-              <tr>
-                <td>DreamEngine</td>
-                <td>21M pairs</td>
-                <td>10.50B</td>
-                <td>Not reported</td>
-                <td>Not reported</td>
-              </tr>
-              <tr class="has-background-grey-lighter">
-                <td><strong>MENTOR</strong></td>
-                <td><strong>3M pairs</strong></td>
-                <td><strong>2.31B</strong></td>
-                <td><strong>8 × A100</strong></td>
-                <td><strong>1.5 days</strong></td>
-              </tr>
-            </tbody>
-          </table>
-          
-          <h3 class="title is-5">Efficiency Advantages</h3>
-          <ul>
-            <li><strong>10× Less Data:</strong> Only 3M training pairs vs. 16-200M for leading baselines</li>
-            <li><strong>30× Fewer GPU Hours:</strong> 8 GPUs × 1.5 days = 288 GPU-hours vs. 256 GPUs × 3 days = 18,432 GPU-hours for Kosmos-G</li>
-            <li><strong>Constant-Time Generation:</strong> Sequence length bounded by image tokens + prompt rather than multi-step diffusion</li>
-            <li><strong>No Diffusion Overhead:</strong> Direct autoregressive generation eliminates sampling iterations</li>
-          </ul>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================= COMPARISON ============================= -->
-<section class="section" id="comparison">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">🔍 MENTOR vs. Diffusion Baselines</h2>
         <div class="content has-text-justified">
           <h3 class="title is-5">Image Reconstruction Performance</h3>
           <table class="table is-bordered is-fullwidth is-hoverable">
@@ -520,14 +414,6 @@
             </tbody>
           </table>
           
-          <h3 class="title is-5 mt-4">Key Insights</h3>
-          <ul>
-            <li><strong>50% Lower Reconstruction Error:</strong> MENTOR achieves 0.101 L2 distance vs. 0.206 for DreamEngine, the strongest diffusion competitor</li>
-            <li><strong>Critical Two-Stage Training:</strong> Removing Stage 1 causes severe performance drop (CP: 0.555 → 0.179)</li>
-            <li><strong>Balanced Modality Integration:</strong> Image recovery task prevents over-reliance on visual features</li>
-            <li><strong>Superior to Kosmos-G:</strong> In controlled comparison, MENTOR (CP·PF: 0.47) vastly outperforms Kosmos-G (CP·PF: 0.11) despite using inferior base components</li>
-            <li><strong>Architectural Flexibility:</strong> Both MLP-based and Query-based variants outperform diffusion baselines</li>
-          </ul>
         </div>
         </div>
       </div>
@@ -551,28 +437,34 @@
             </figcaption>
           </figure>
           
-          <h3 class="title is-5 mt-4">Supported Applications</h3>
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-6">🎭 Image Segmentation</h4>
-              <p>End-to-end object segmentation with high spatial precision, leveraging our Stage 1 training on segmentation tasks.</p>
-            </div>
-            <div class="column">
-              <h4 class="title is-6">🖼️ Multi-Image Generation</h4>
-              <p>Generate coherent images from multiple reference inputs, showcasing balanced multimodal integration capabilities.</p>
-            </div>
-          </div>
-          
-          <div class="columns">
-            <div class="column">
-              <h4 class="title is-6">🎨 Subject-Driven Generation</h4>
-              <p>Preserve subject identity while following textual instructions, demonstrating precise visual-textual alignment.</p>
-            </div>
-            <div class="column">
-              <h4 class="title is-6">🧠 In-Context Learning</h4>
-              <p>Adapt to new generation tasks through multimodal examples, highlighting the framework's generalization ability.</p>
-            </div>
-          </div>
+   <h3 class="title is-5 mt-4">Supported Applications</h3>
+
+    <div class="columns is-multiline is-centered">
+      <div class="column is-half">
+        <h4 class="title is-6">🎭 Image Segmentation</h4>
+        <figure class="image mb-2">
+          <img src="./figures/segmentation_example.png" alt="Segmentation Example">
+        </figure>
+        <p>End-to-end object segmentation with high spatial precision, enabled by Stage 1 training.</p>
+      </div>
+
+      <div class="column is-half">
+        <h4 class="title is-6">🖼️ Multi-Image Generation</h4>
+        <figure class="image mb-2">
+          <img src="./figures/multi_img.png" alt="Multi-Image Generation">
+        </figure>
+        <p>Generate coherent outputs from multiple reference images, demonstrating multimodal alignment.</p>
+      </div>
+
+      <div class="column is-half">
+        <h4 class="title is-6">🧠 In-Context Learning</h4>
+        <figure class="image mb-2">
+          <img src="./figures/icl_exp.png" alt="In-Context Learning Example">
+        </figure>
+        <p>Adapt to unseen generation tasks from few multimodal examples, showing strong generalization.</p>
+      </div>
+    </div>
+
           
           <div class="notification is-info is-light">
             <p><strong>📝 Key Insight:</strong> While achieving state-of-the-art performance in each specialized domain would require more targeted training and potentially more powerful components, these initial results underscore MENTOR's versatility and potential as an effective foundation for diverse multimodal conditional image generation applications.</p>
