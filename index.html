@@ -35,10 +35,10 @@
 
           <!-- ========== AUTHORS ========= -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="#">Haozhe&nbsp;Zhao</a><sup>1</sup>*,</span>
+            <span class="author-block"><a href="https://haozhezhao.github.io/">Haozhe&nbsp;Zhao</a><sup>1</sup>*,</span>
             <span class="author-block"><a href="https://zefan-cai.github.io/">Zefan&nbsp;Cai</a><sup>2</sup><span class="has-text-weight-normal">*</span>,</span>
-            <span class="author-block"><a href="#">Shuzheng&nbsp;Si</a><sup>3</sup>,</span>
-            <span class="author-block"><a href="#">Liang&nbsp;Chen</a><sup>4</sup>,</span>
+            <span class="author-block"><a href="https://s1s-z.github.io/">Shuzheng&nbsp;Si</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://chenllliang.github.io/">Liang&nbsp;Chen</a><sup>4</sup>,</span>
             <span class="author-block"><a href="https://scholar.google.com/citations?user=Ls0e7IEAAAAJ">Jiuxiang&nbsp;Gu</a><sup>5</sup>,</span>
             <span class="author-block"><a href="https://wendy-xiao.github.io/">Wen&nbsp;Xiao</a><sup>6</sup>,</span>
             <span class="author-block"><a href="https://junjiehu.github.io/">Junjie&nbsp;Hu</a><sup>2</sup></span>
@@ -97,7 +97,7 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <figure class="image is-pulled-right" style="width: 50%; margin-left: 20px;">
-            <img src="./NeurIPS-VidualInstructionEditing/figures/Figure.pdf" alt="CP·PF score comparison">
+            <img src="./figures/Figure.png" alt="CP·PF score comparison">
             <figcaption class="has-text-centered"><strong style="color: #ED8B50;">MENTOR</strong> vs <strong style="color: #5A76A9;">other baselines</strong> on DreamBench++. Circle size represents CP·PF score. Models in lower left achieve the best efficiency.</figcaption>
           </figure>
           
@@ -205,7 +205,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">🔍 Method — Two‑Stage Multimodal‑Conditioned Tuning</h2>
         <div class="content has-text-justified">
-          <p><img src="./NeurIPS-VidualInstructionEditing/figures/model_stagev2.pdf" alt="MENTOR method diagram"></p>
+          <p><img src="./figures/model_stagev2.png" alt="MENTOR method diagram"></p>
           
           <h3>Model Architecture</h3>
           <p>MENTOR comprises two core components: a <strong>multimodal encoder</strong> and an <strong>autoregressive generation decoder</strong>. These components are designed to unify multimodal inputs into a shared embedding and generate image tokens sequentially conditioned on the unified embedding.</p>
@@ -513,8 +513,8 @@
               </tr>
               <tr class="has-background-grey-lighter">
                 <td><strong>MENTOR (Full Model)</strong></td>
-                <td><strong>0.555</strong></td>
-                <td><strong>0.839</strong></td>
+                <td>0.555</td>
+                <td>0.839</td>
                 <td><strong>0.466</strong></td>
               </tr>
             </tbody>
@@ -545,7 +545,7 @@
           <p>MENTOR demonstrates broad adaptability across diverse multimodal generation tasks with minimal fine-tuning. Our framework's versatility stems from its unified autoregressive approach and robust two-stage training paradigm.</p>
           
           <figure class="image">
-            <img src="./static/images/teasarv3.pdf" alt="MENTOR versatile applications showcase" style="width: 100%;">
+            <img src="./figures/teasarv3.png" alt="MENTOR versatile applications showcase" style="width: 100%;">
             <figcaption class="has-text-centered mt-2">
               <strong>Versatile applications</strong> built on MENTOR after simple fine-tuning on corresponding datasets, including image segmentation, multi-image generation, subject-driven image generation, and multimodal in-context learning image generation.
             </figcaption>
@@ -591,14 +591,11 @@
         <h2 class="title is-3">📚 Citation</h2>
         <div class="content has-text-justified">
           <p>If you find <strong>MENTOR</strong> useful, please cite:</p>
-<pre><code>@misc{zhao2025mentor,
-  title        = {MENTOR: Efficient Multimodal-Conditioned Tuning for Autoregressive Vision Generation Models},
-  author       = {Haozhe Zhao and Zefan Cai and Shuzheng Si and Liang Chen and Jiuxiang Gu and Wen Xiao and Junjie Hu},
-  year         = {2025},
-  eprint       = {2506.01234},
-  archivePrefix= {arXiv},
-  primaryClass = {cs.CV},
-  url          = {https://arxiv.org/abs/2506.01234}
+<pre><code>@inproceedings{zhao2024mentor,
+  title={MENTOR: Efficient Multimodal-Conditioned Tuning for Autoregressive Vision Generation Models},
+  author={Zhao, Haozhe* and Cai, Zefan* and Si, Shuzheng and Chen, Liang and 
+          Gu, Jiuxiang and Xiao, Wen and Hu, Junjie},
+  year={2024}
 }</code></pre>
         </div>
       </div>
@@ -610,7 +607,7 @@
 <footer class="footer has-background-dark">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="./static/MENTOR_paper.pdf"><i class="fas fa-file-pdf" style="color:white"></i></a>
+      <a class="icon-link" href="./figures/MENTOR_paper.png"><i class="fas fa-file-pdf" style="color:white"></i></a>
       <a class="icon-link" href="https://github.com/HaozheZhao/MENTOR"><i class="fab fa-github" style="color:white"></i></a>
     </div>
     <div class="columns is-centered">
